@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="coding-challenge-implementation-of-the-risc-v-isa-extensions-for-control-flow-integrity">Coding Challenge: Implementation of the RISC-V ISA Extensions for Control-Flow Integrity</h1>
+<h2 id="3-state-packet-fsm-in-systemverilog">3-State Packet FSM in SystemVerilog</h2>
+<p><strong>Author:</strong> Ruijue Luo<br>
+<strong>Date:</strong> August 3, 2026</p>
+<hr>
+<h2 id="1-objective">1. Objective</h2>
+<p>The objective of this challenge is to implement a three-state finite-state machine in SystemVerilog. The FSM accepts one 32-bit packet per clock cycle.</p>
+<p>Each packet contains:</p>
+<ul>
+<li>An 8-bit command in <code>packet_i[31:24]</code></li>
+<li>A 24-bit data field in <code>packet_i[23:0]</code></li>
+</ul>
+<p>The supported commands are:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:right">Value</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SET</td>
+<td style="text-align:right"><code>8'h01</code></td>
+<td>Store the data field in the internal label register</td>
+</tr>
+<tr>
+<td>JUMP</td>
+<td style="text-align:right"><code>8'h02</code></td>
+<td>Enter the CHECK state</td>
+</tr>
+<tr>
+<td>LPAD</td>
+<td style="text-align:right"><code>8'h03</code></td>
+<td>Check the data field against the stored label</td>
+</tr>
+</tbody>
+</table>
+<p>The design represents a simplified control-flow integrity mechanism. A jump is accepted only when it is followed by a landing-pad packet containing the expected label.</p>
+<hr>
+<h2 id="2-functional-behaviour">2. Functional Behaviour</h2>
+<p>The FSM contains three states:</p>
+<ul>
+<li><code>IDLE</code>: normal operation and label configuration</li>
+<li><code>CHECK</code>: verification of the packet following a JUMP</li>
+<li><code>ERROR</code>: permanent error state until reset</li>
+</ul>
+<p>The state transitions are shown below.</p>
+<table>
+<thead>
+<tr>
+<th>Current state</th>
+<th>Input condition</th>
+<th>Operation</th>
+<th>Next state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDLE</td>
+<td>SET</td>
+<td>Store packet data as label</td>
+<td>IDLE</td>
+</tr>
+<tr>
+<td>IDLE</td>
+<td>JUMP</td>
+<td>Start landing-pad check</td>
+<td>CHECK</td>
+</tr>
+<tr>
+<td>IDLE</td>
+<td>Other command</td>
+<td>No operation</td>
+<td>IDLE</td>
+</tr>
+<tr>
+<td>CHECK</td>
+<td>LPAD and data matches label</td>
+<td>Check passes</td>
+<td>IDLE</td>
+</tr>
+<tr>
+<td>CHECK</td>
+<td>Any other condition</td>
+<td>Check fails</td>
+<td>ERROR</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>Any packet</td>
+<td>No operation</td>
+<td>ERROR</td>
+</tr>
+</tbody>
+</table>
+<p>The ERROR state is sticky. Once it is reached, the FSM remains in ERROR until reset is asserted.</p>
+<hr>
+<h2 id="3-interface">3. Interface</h2>
+<p>The implemented module uses the following interface.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Direction</th>
+<th style="text-align:right">Width</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clk_i</code></td>
+<td>Input</td>
+<td style="text-align:right">1</td>
+<td>Clock</td>
+</tr>
+<tr>
+<td><code>rst_ni</code></td>
+<td>Input</td>
+<td style="text-align:right">1</td>
+<td>Active-low asynchronous reset</td>
+</tr>
+<tr>
+<td><code>packet_i</code></td>
+<td>Input</td>
+<td style="text-align:right">32</td>
+<td>Command and data packet</td>
+</tr>
+<tr>
+<td><code>state_o</code></td>
+<td>Output</td>
+<td style="text-align:right">2</td>
+<td>Current FSM state</td>
+</tr>
+<tr>
+<td><code>label_o</code></td>
+<td>Output</td>
+<td style="text-align:right">24</td>
+<td>Stored label</td>
+</tr>
+<tr>
+<td><code>error_o</code></td>
+<td>Output</td>
+<td style="text-align:right">1</td>
+<td>High when the FSM is in ERROR</td>
+</tr>
+</tbody>
+</table>
+<p>The state encoding is:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th style="text-align:right">Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDLE</td>
+<td style="text-align:right"><code>2'b00</code></td>
+</tr>
+<tr>
+<td>CHECK</td>
+<td style="text-align:right"><code>2'b01</code></td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td style="text-align:right"><code>2'b10</code></td>
+</tr>
+</tbody>
+</table>
+<p>The state and label outputs are included to make the internal behaviour observable during verification.</p>
+<hr>
+<h2 id="4-rtl-implementation">4. RTL Implementation</h2>
+<p>The implementation separates combinational next-state logic from sequential state and label registers.</p>
+<pre class="hljs"><code><div>`timescale 1ns/1ps
+
+module packet_fsm (
+  input  logic        clk_i,
+  input  logic        rst_ni,
+  input  logic [31:0] packet_i,
+
+  output logic [1:0]  state_o,
+  output logic [23:0] label_o,
+  output logic        error_o
+);
+
+  localparam logic [7:0] CMD_SET  = 8'h01;
+  localparam logic [7:0] CMD_JUMP = 8'h02;
+  localparam logic [7:0] CMD_LPAD = 8'h03;
+
+  typedef enum logic [1:0] {
+    IDLE  = 2'b00,
+    CHECK = 2'b01,
+    ERROR = 2'b10
+  } state_e;
+
+  state_e state_q;
+  state_e state_d;
+
+  logic [23:0] label_q;
+  logic [7:0]  command;
+  logic [23:0] data;
+
+  assign command = packet_i[31:24];
+  assign data    = packet_i[23:0];
+
+  always_comb begin
+    state_d = state_q;
+
+    unique case (state_q)
+      IDLE: begin
+        if (command == CMD_JUMP) begin
+          state_d = CHECK;
+        end
+      end
+
+      CHECK: begin
+        if ((command == CMD_LPAD) &amp;&amp; (data == label_q)) begin
+          state_d = IDLE;
+        end else begin
+          state_d = ERROR;
+        end
+      end
+
+      ERROR: begin
+        state_d = ERROR;
+      end
+
+      default: begin
+        state_d = ERROR;
+      end
+    endcase
+  end
+
+  always_ff @(posedge clk_i or negedge rst_ni) begin
+    if (!rst_ni) begin
+      state_q &lt;= IDLE;
+      label_q &lt;= 24'h000000;
+    end else begin
+      state_q &lt;= state_d;
+
+      if ((state_q == IDLE) &amp;&amp; (command == CMD_SET)) begin
+        label_q &lt;= data;
+      end
+    end
+  end
+
+  assign state_o = state_q;
+  assign label_o = label_q;
+  assign error_o = (state_q == ERROR);
+
+endmodule : packet_fsm
+</div></code></pre>
+<h3 id="design-decisions">Design decisions</h3>
+<p>The active-low reset initializes the state to IDLE and clears the label register.</p>
+<p>The label register is updated only when a SET command is received in the IDLE state. A SET command received in CHECK or ERROR cannot modify the stored label.</p>
+<p>In CHECK, the FSM returns to IDLE only when both conditions are true:</p>
+<pre class="hljs"><code><div>command == CMD_LPAD
+data == label_q
+</div></code></pre>
+<p>Every other condition causes the FSM to enter ERROR.</p>
+<hr>
+<h2 id="5-verification-strategy">5. Verification Strategy</h2>
+<p>A self-checking SystemVerilog testbench was developed to verify the required behaviour.</p>
+<p>The following scenarios are covered:</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reset</td>
+<td>State becomes IDLE and label is cleared</td>
+</tr>
+<tr>
+<td>LPAD in IDLE</td>
+<td>Packet is ignored</td>
+</tr>
+<tr>
+<td>SET in IDLE</td>
+<td>Data is stored in the label register</td>
+</tr>
+<tr>
+<td>JUMP in IDLE</td>
+<td>FSM enters CHECK</td>
+</tr>
+<tr>
+<td>Matching LPAD in CHECK</td>
+<td>FSM returns to IDLE</td>
+</tr>
+<tr>
+<td>Mismatching LPAD in CHECK</td>
+<td>FSM enters ERROR</td>
+</tr>
+<tr>
+<td>Non-LPAD command in CHECK</td>
+<td>FSM enters ERROR</td>
+</tr>
+<tr>
+<td>Command in ERROR</td>
+<td>FSM remains in ERROR</td>
+</tr>
+<tr>
+<td>Reset in ERROR</td>
+<td>FSM returns to IDLE</td>
+</tr>
+</tbody>
+</table>
+<p>The testbench checks the state, stored label, and error output after each test. A mismatch terminates the simulation using <code>$fatal</code>.</p>
+<hr>
+<h2 id="6-testbench">6. Testbench</h2>
+<pre class="hljs"><code><div>`timescale 1ns/1ps
+
+module packet_fsm_tb;
+
+  localparam logic [7:0] CMD_SET  = 8'h01;
+  localparam logic [7:0] CMD_JUMP = 8'h02;
+  localparam logic [7:0] CMD_LPAD = 8'h03;
+
+  localparam logic [1:0] STATE_IDLE  = 2'b00;
+  localparam logic [1:0] STATE_CHECK = 2'b01;
+  localparam logic [1:0] STATE_ERROR = 2'b10;
+
+  logic        clk_i;
+  logic        rst_ni;
+  logic [31:0] packet_i;
+
+  logic [1:0]  state_o;
+  logic [23:0] label_o;
+  logic        error_o;
+
+  packet_fsm dut (
+    .clk_i    (clk_i),
+    .rst_ni   (rst_ni),
+    .packet_i (packet_i),
+    .state_o  (state_o),
+    .label_o  (label_o),
+    .error_o  (error_o)
+  );
+
+  initial begin
+    clk_i = 1'b0;
+    forever #5 clk_i = ~clk_i;
+  end
+
+  task automatic send_packet(
+    input logic [7:0]  command,
+    input logic [23:0] data
+  );
+    begin
+      @(negedge clk_i);
+      packet_i = {command, data};
+
+      @(posedge clk_i);
+      #1;
+    end
+  endtask
+
+  task automatic check_outputs(
+    input logic [1:0]  expected_state,
+    input logic [23:0] expected_label,
+    input logic        expected_error,
+    input string       test_name
+  );
+    begin
+      if ((state_o !== expected_state) ||
+          (label_o !== expected_label) ||
+          (error_o !== expected_error)) begin
+        $fatal(
+          1,
+          &quot;FAIL: %s state=%0d label=0x%06h error=%0b&quot;,
+          test_name,
+          state_o,
+          label_o,
+          error_o
+        );
+      end
+
+      $display(
+        &quot;PASS: %s state=%0d label=0x%06h error=%0b&quot;,
+        test_name,
+        state_o,
+        label_o,
+        error_o
+      );
+    end
+  endtask
+
+  initial begin
+    $dumpfile(&quot;build/packet_fsm_tb.vcd&quot;);
+    $dumpvars(0, packet_fsm_tb);
+
+    rst_ni   = 1'b0;
+    packet_i = 32'h00000000;
+
+    repeat (2) @(posedge clk_i);
+    #1;
+
+    check_outputs(
+      STATE_IDLE,
+      24'h000000,
+      1'b0,
+      &quot;reset&quot;
+    );
+
+    @(negedge clk_i);
+    rst_ni = 1'b1;
+
+    @(posedge clk_i);
+    #1;
+
+    check_outputs(
+      STATE_IDLE,
+      24'h000000,
+      1'b0,
+      &quot;reset release&quot;
+    );
+
+    // LPAD in IDLE must not change the state.
+    send_packet(CMD_LPAD, 24'h123456);
+    check_outputs(
+      STATE_IDLE,
+      24'h000000,
+      1'b0,
+      &quot;LPAD ignored in IDLE&quot;
+    );
+
+    // SET stores the label while remaining in IDLE.
+    send_packet(CMD_SET, 24'h123456);
+    check_outputs(
+      STATE_IDLE,
+      24'h123456,
+      1'b0,
+      &quot;SET stores label&quot;
+    );
+
+    // Correct JUMP -&gt; LPAD sequence.
+    send_packet(CMD_JUMP, 24'h000000);
+    check_outputs(
+      STATE_CHECK,
+      24'h123456,
+      1'b0,
+      &quot;JUMP enters CHECK&quot;
+    );
+
+    send_packet(CMD_LPAD, 24'h123456);
+    check_outputs(
+      STATE_IDLE,
+      24'h123456,
+      1'b0,
+      &quot;matching LPAD returns to IDLE&quot;
+    );
+
+    // A mismatching LPAD must enter ERROR.
+    send_packet(CMD_SET, 24'hABCDEF);
+    check_outputs(
+      STATE_IDLE,
+      24'hABCDEF,
+      1'b0,
+      &quot;SET updates label&quot;
+    );
+
+    send_packet(CMD_JUMP, 24'h000000);
+    check_outputs(
+      STATE_CHECK,
+      24'hABCDEF,
+      1'b0,
+      &quot;second JUMP enters CHECK&quot;
+    );
+
+    send_packet(CMD_LPAD, 24'hABC000);
+    check_outputs(
+      STATE_ERROR,
+      24'hABCDEF,
+      1'b1,
+      &quot;mismatching LPAD enters ERROR&quot;
+    );
+
+    // ERROR must remain active and the label must not change.
+    send_packet(CMD_SET, 24'h654321);
+    check_outputs(
+      STATE_ERROR,
+      24'hABCDEF,
+      1'b1,
+      &quot;ERROR remains locked&quot;
+    );
+
+    // Reset must recover from ERROR.
+    // Clear packet_i to prevent the previous SET packet from being
+    // accepted again after reset is released.
+    @(negedge clk_i);
+    rst_ni   = 1'b0;
+    packet_i = 32'h00000000;
+
+    @(posedge clk_i);
+    #1;
+
+    check_outputs(
+      STATE_IDLE,
+      24'h000000,
+      1'b0,
+      &quot;reset recovers from ERROR&quot;
+    );
+
+    @(negedge clk_i);
+    rst_ni = 1'b1;
+
+    @(posedge clk_i);
+    #1;
+
+    check_outputs(
+      STATE_IDLE,
+      24'h000000,
+      1'b0,
+      &quot;state remains IDLE after reset release&quot;
+    );
+
+    // Any non-LPAD command in CHECK must enter ERROR.
+    send_packet(CMD_SET, 24'hFEDCBA);
+    check_outputs(
+      STATE_IDLE,
+      24'hFEDCBA,
+      1'b0,
+      &quot;SET stores new label&quot;
+    );
+
+    send_packet(CMD_JUMP, 24'h000000);
+    check_outputs(
+      STATE_CHECK,
+      24'hFEDCBA,
+      1'b0,
+      &quot;third JUMP enters CHECK&quot;
+    );
+
+    send_packet(CMD_SET, 24'hFEDCBA);
+    check_outputs(
+      STATE_ERROR,
+      24'hFEDCBA,
+      1'b1,
+      &quot;non-LPAD command in CHECK enters ERROR&quot;
+    );
+
+    $display(&quot;All CFI FSM tests passed.&quot;);
+
+    #10;
+    $finish;
+  end
+
+endmodule : packet_fsm_tb
+</div></code></pre>
+<hr>
+<h2 id="7-simulation-script">7. Simulation Script</h2>
+<p>File:</p>
+<pre class="hljs"><code><div>scripts/run_verilator.sh
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/usr/bin/env bash</span>
+
+<span class="hljs-built_in">set</span> -euo pipefail
+
+PROJECT_ROOT=<span class="hljs-string">&quot;<span class="hljs-subst">$(cd <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">${BASH_SOURCE[0]}</span>&quot;</span>)</span>/..&quot;</span> &amp;&amp; pwd)</span>&quot;</span>
+BUILD_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">${PROJECT_ROOT}</span>/build&quot;</span>
+
+<span class="hljs-keyword">if</span> ! <span class="hljs-built_in">command</span> -v verilator &gt;/dev/null 2&gt;&amp;1; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Error: verilator was not found in PATH.&quot;</span> &gt;&amp;2
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Run: source ~/tools/oss-cad-suite/environment&quot;</span> &gt;&amp;2
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">${BUILD_DIR}</span>&quot;</span>
+<span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;<span class="hljs-variable">${PROJECT_ROOT}</span>&quot;</span>
+
+verilator \
+  --binary \
+  --timing \
+  --trace \
+  -Wall \
+  -Wno-BLKSEQ \
+  --top-module packet_fsm_tb \
+  --Mdir <span class="hljs-string">&quot;<span class="hljs-variable">${BUILD_DIR}</span>/obj_dir&quot;</span> \
+  <span class="hljs-string">&quot;<span class="hljs-variable">${PROJECT_ROOT}</span>/rtl/packet_fsm.sv&quot;</span> \
+  <span class="hljs-string">&quot;<span class="hljs-variable">${PROJECT_ROOT}</span>/tb/packet_fsm_tb.sv&quot;</span>
+
+<span class="hljs-string">&quot;<span class="hljs-variable">${BUILD_DIR}</span>/obj_dir/Vpacket_fsm_tb&quot;</span>
+</div></code></pre>
+<p>The script performs the following steps:</p>
+<ol>
+<li>Determines the project root directory.</li>
+<li>Checks that Verilator is available.</li>
+<li>Creates the build directory.</li>
+<li>Compiles the RTL and testbench.</li>
+<li>Builds the simulation executable.</li>
+<li>Runs the self-checking testbench.</li>
+<li>Generates the VCD waveform.</li>
+</ol>
+<hr>
+<h2 id="8-makefile">8. Makefile</h2>
+<p>File:</p>
+<pre class="hljs"><code><div>Makefile
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: test wave clean</span>
+
+<span class="hljs-section">test:</span>
+	./scripts/run_verilator.sh
+
+<span class="hljs-section">wave:</span>
+	gtkwave build/packet_fsm_tb.vcd
+
+<span class="hljs-section">clean:</span>
+	rm -rf build
+</div></code></pre>
+<p>The complete simulation can be run with:</p>
+<pre class="hljs"><code><div>make clean
+make <span class="hljs-built_in">test</span>
+</div></code></pre>
+<p>The generated waveform can be opened with:</p>
+<pre class="hljs"><code><div>make wave
+</div></code></pre>
+<hr>
+<h2 id="9-simulation-results">9. Simulation Results</h2>
+<p>The self-checking testbench verifies both successful and unsuccessful control-flow checks.</p>
+<p>A successful simulation ends with:</p>
+<pre class="hljs"><code><div>All CFI FSM tests passed.
+</div></code></pre>
+<p>The terminal output from the completed simulation is shown below.</p>
+<p><img src="images/simulation_output.png" alt="Simulation terminal output"></p>
+<hr>
+<h2 id="10-waveform-analysis">10. Waveform Analysis</h2>
+<p>The waveform should contain the following signals:</p>
+<ol>
+<li>A SET packet stores its data field in <code>label_o</code>.</li>
+<li>A JUMP packet changes <code>state_o</code> from IDLE to CHECK.</li>
+<li>A matching LPAD packet changes <code>state_o</code> from CHECK to IDLE.</li>
+<li>A mismatching LPAD packet changes <code>state_o</code> from CHECK to ERROR.</li>
+<li>Once ERROR is reached, <code>error_o</code> remains high until reset.</li>
+<li>Reset returns the FSM to IDLE and clears the label.</li>
+</ol>
+<p><img src="images/fsm_waveform.png" alt="CFI FSM simulation waveform"></p>
+<hr>
+<h2 id="11-project-structure">11. Project Structure</h2>
+<pre class="hljs"><code><div>cfi-fsm-challenge/
+├── images/
+│   ├── simulation_output.png
+│   └── fsm_waveform.png
+├── rtl/
+│   └── packet_fsm.sv
+├── scripts/
+│   └── run_verilator.sh
+├── tb/
+│   └── packet_fsm_tb.sv
+├── Makefile
+├── README.md
+└── report.md
+</div></code></pre>
+
+</body>
+</html>
